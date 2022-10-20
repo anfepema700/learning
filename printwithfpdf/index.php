@@ -13,7 +13,7 @@ function Header()
     // Movernos a la derecha
     $this->Cell(80);
     // Título
-    $this->Cell(30,10,'Title',1,0,'C');
+    $this->Cell(70,10,'Reporte productos',1,0,'C');
     // Salto de línea
     $this->Ln(20);
 }
@@ -30,19 +30,32 @@ function Footer()
 }
 }
 
+require'cn.php';
+$consulta = "SELECT * FROM productos";
+$resultado = $mysqli->query($consulta);
+
 // Creación del objeto de la clase heredada
 $pdf = new PDF();
 $pdf->AliasNbPages();
 $pdf->AddPage();
 $pdf->SetFont('Times','',12);
-for($i=1;$i<=5;$i++)
+/*for($i=1;$i<=5;$i++)
     $pdf->Cell(0,10,utf8_decode('Imprimiendo línea número ').$i,0,1);
+*/
+while ($row= $resultado->fetch_assoc()) {
+	$pdf->Cell(40,10,$row['nombre'], 1,0,'C', 0);
+	$pdf->Cell(100,10,$row['descripcion'], 1,0,'C', 0);
+	$pdf->Cell(30,10,$row['valor'], 1,1,'C', 0);
+}
+
 $pdf->Output();
 
 
+/*
 $pdf = new PDF();
 $pdf->AddPage();
 $pdf->SetFont('Arial','B',16);
 $pdf->Cell(40,10,utf8_decode('¡Hola, Mundo!'));
 $pdf->Output();
+*/
 ?>
