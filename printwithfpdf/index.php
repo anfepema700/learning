@@ -13,9 +13,16 @@ function Header()
     // Movernos a la derecha
     $this->Cell(80);
     // Título
-    $this->Cell(70,10,'Reporte productos',1,0,'C');
+    $this->Cell(50,10,'Reporte productos',0,0,'C',0);
     // Salto de línea
     $this->Ln(20);
+
+    //titulos a la tabla
+    $this->Cell(40,10,'Nombre', 1,0,'C',0);
+    $this->Cell(100,10,utf8_decode( 'Descripción'),1,0,'C',0);
+    $this->Cell(30,10,'Precio', 1,1,'C',0);
+
+
 }
 
 // Pie de página
