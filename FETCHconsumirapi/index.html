@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+   <title>Document</title>
+</head>
+<body>
+
+    <div class="container center section">
+        <button class="btn" onclick="traer()">Obtener</button>
+        <div class="row section">
+            <div col s12 m7>
+        <div id="contenido" class="card">
+        </div>
+        </div>
+        </div>
+    </div>
+
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script>
+        var contenido = document.querySelector('#contenido')
+        function traer(){
+            fetch('https://randomuser.me/api/')
+            .then(res => res.json())
+            .then(data => {
+            console.log(data.results['0'].name.first)
+            contenido.innerHTML=`
+                <img src="${data.results['0'].picture.large}" class="card.image">
+                <p class="card-title">Nombre: ${data.results['0'].name.first}</p>
+                `
+        })
+        }
+    </script>
+
+</body>
+</html>
